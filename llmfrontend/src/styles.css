@@ -1,0 +1,10 @@
+/* Sidebar transition for width */
+.sidebar-transition {
+    transition: width 0.3s ease-in-out;
+  }
+  
+  /* Header shadow for better appearance */
+  .header-shadow {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  

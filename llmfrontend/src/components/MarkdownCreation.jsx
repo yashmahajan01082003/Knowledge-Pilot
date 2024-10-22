@@ -103,7 +103,7 @@ function MarkdownCreation() {
       <div className="flex flex-col flex-grow overflow-y-auto">
         <Header toggleSidebar={toggleSidebar} />
         <main className="flex-grow p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Markdown Generation</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">Markdown Converter</h2>
           <div className="bg-white p-6 rounded-lg mb-6 shadow">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">Create Markdown File</h2>
             <p className="text-gray-700 mb-4">Upload a file to convert it to a Markdown file and download it.</p>
@@ -165,30 +165,25 @@ function MarkdownCreation() {
           </div>
           <div className="bg-white p-6 rounded-lg shadow mt-6">
             {/* Documentation content remains the same */}
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">About Markdown</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">Markdown Converter Documentation</h3>
             <p className="text-gray-700 mb-4">
-              Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. 
-              Created by John Gruber in 2004, Markdown is now one of the world's most popular markup languages.
+            <strong>What is Markdown?</strong> <br />
+            Markdown is a lightweight markup language with plain text formatting syntax. Its design allows it to be converted to many output formats, but the original tool, Markdown, was designed to convert plain text into HTML. Markdown is widely used for writing documentation, creating README files, and formatting messages in online discussion forums.
             </p>
+
             <p className="text-gray-700 mb-4">
-              In this tool, you can upload any type of file format, and it will be converted into a Markdown file. 
-              This feature allows you to easily transform text, code, or other content into Markdown for easy sharing and readability.
+              <strong>Features of Markdown:</strong>
+              <ul className="list-disc list-inside mb-4">
+                <li>Easy to read and write.</li>
+                <li>Simple syntax for formatting text (headers, lists, links, images, etc.).</li>
+                <li>Conversion to HTML and other formats.</li>
+                <li>Wide support in various applications and platforms.</li>
+              </ul>
             </p>
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">Usage</h4>
-            <ul className="list-disc list-inside text-gray-700 mb-4">
-              <li>Markdown is commonly used for creating formatted text using a plain-text editor.</li>
-              <li>It’s widely used in documentation, readme files, and static site generators.</li>
-              <li>Markdown is also supported in many programming languages, making it a great tool for developers.</li>
-            </ul>
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">Key Features</h4>
-            <ul className="list-disc list-inside text-gray-700 mb-4">
-              <li>Easy to learn and use.</li>
-              <li>Portable across different platforms.</li>
-              <li>Readable in its raw form.</li>
-              <li>Can be converted to various formats like HTML, PDF, etc.</li>
-            </ul>
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">Example Syntax</h4>
-            <p className="text-gray-700 mb-2"><strong>Headers:</strong></p>
+
+            <p className="text-gray-700 mb-4">
+              <strong>Example of Markdown:</strong>
+              <p className="text-gray-700 mb-2"><strong>Headers:</strong></p>
             <pre className="bg-gray-200 p-4 rounded text-gray-800 mb-4">
               {`# This is an H1\n## This is an H2\n### This is an H3`}
             </pre>
@@ -200,6 +195,25 @@ function MarkdownCreation() {
             <pre className="bg-gray-200 p-4 rounded text-gray-800 mb-4">
               {`- Item 1\n- Item 2\n- Item 3`}
             </pre>
+            </p>
+
+            <p className="text-gray-700 mb-4">
+              <strong>Why Use Markdown?</strong> <br />
+              Markdown is preferred for its simplicity and versatility. It allows users to create well-structured documents without dealing with complex formatting. It is also easily readable in its raw form, making it ideal for writing documentation and collaborating on projects.
+            </p>
+            <p className="text-gray-700 mb-4">
+              <strong>Markdown Converter Tool</strong> <br />
+              The Markdown Converter is a software tool designed to help users convert various file formats into Markdown. It simplifies the process of generating Markdown content from structured data or formatted text, ensuring that the output adheres to Markdown syntax.
+            </p>
+            <p className="text-gray-700 mb-4">
+              <strong>How to Use the Markdown Converter:</strong> <br />
+              To use the Markdown Converter, follow these steps:
+              <ol className="list-decimal pl-6 mb-4">
+                <li>Upload your file in a supported format (e.g., PDF, DOCX, PPTX, PPT).</li>
+                <li>Click the "Convert" button to generate the Markdown file.</li>
+                <li>Download the converted Markdown file to your local machine.</li>
+              </ol>
+            </p>
           </div>
         </main>
       </div>

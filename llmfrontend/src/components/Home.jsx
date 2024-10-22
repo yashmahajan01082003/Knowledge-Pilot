@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
   return (
@@ -7,12 +9,14 @@ function Home() {
       {/* Header */}
       <header className="bg-white bg-opacity-70 text-gray-800 py-4">
         <div className="max-w-5xl mx-auto px-4 md:px-8 lg:px-12 flex justify-between items-center">
-          
+        
           <nav>
+          <FontAwesomeIcon icon={faGraduationCap} size="2x" className='mr-6'/> 
             <Link to="/" className="text-gray-600 hover:text-gray-800 mx-2">Home</Link>
-            <Link to="/chatbot" className="text-gray-600 hover:text-gray-800 mx-2">About</Link>
-            <Link to="/dashboard" className="text-gray-600 hover:text-gray-800 mx-2">Contact</Link>
+            <Link to="/about" className="text-gray-600 hover:text-gray-800 mx-2">About</Link>
+            <Link to="/contact" className="text-gray-600 hover:text-gray-800 mx-2">Contact</Link>
           </nav>
+          <Link to="/login" className="text-gray-600 hover:text-gray-800 mx-2">Login</Link>
         </div>
       </header>
 
@@ -42,7 +46,7 @@ function Home() {
             </div>
           </div>
           <div className="flex justify-center space-x-4">
-            <Link to="/chatbot">
+            <Link to="/chat">
               <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg">
                 Use Chatbot
               </button>
