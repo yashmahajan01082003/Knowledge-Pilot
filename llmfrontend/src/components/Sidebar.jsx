@@ -8,7 +8,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   return (
     isSidebarOpen && (
       <div className="flex h-screen sidebar-transition"> 
-      <div className="w-60 bg-gray-800 text-white flex flex-col h-screen">
+      <div className="w-60 bg-gray-900 text-white flex flex-col h-screen">
         <div className="p-4 text-2xl font-semibold">
           <Link to="/"> 
           <FontAwesomeIcon icon={faGraduationCap} /> 

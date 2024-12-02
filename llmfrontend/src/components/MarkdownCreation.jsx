@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import Header from './Header';
+import Header from './Header2';
 import axios from 'axios';
 import { Worker, Viewer } from '@react-pdf-viewer/core'; 
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -70,7 +70,7 @@ function MarkdownCreation() {
       formData.append('file', uploadedFile);
   
       try {
-        const response = await axios.post('http://localhost:8000/api/markdownconversion/', formData, {
+        const response = await axios.post('http://localhost:8000/markdown/markdownconversion/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

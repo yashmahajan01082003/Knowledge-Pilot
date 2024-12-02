@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import Header from './Header';
+import Header from './Header2';
 import axios from 'axios';
 
 function DatasetCombiner() {

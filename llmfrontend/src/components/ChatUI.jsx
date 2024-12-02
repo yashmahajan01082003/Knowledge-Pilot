@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './SideBar2';
+import Header from './Header2';
 import ChatArea from './ChatArea';
 import ProfilePage from './ProfilePage';
 
@@ -8,6 +9,7 @@ function ChatUI() {
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const [selectedChatId, setSelectedChatId] = useState(null);
 
+  // Function to toggle sidebar visibility
   const handleSidebarToggle = () => {
     setSidebarExpanded(!sidebarExpanded);
   };
@@ -17,28 +19,20 @@ function ChatUI() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 relative">
-      {showProfile ? (
-        <ProfilePage onBack={() => setShowProfile(false)} />
-      ) : (
-        <>
-          <Sidebar 
-            expanded={sidebarExpanded} 
-            onToggle={handleSidebarToggle}
-            onChatSelect={handleChatSelect} 
-          />
-          <ChatArea 
-            sidebarExpanded={sidebarExpanded} 
-            selectedChatId={selectedChatId} 
-          />
-          <button 
-            onClick={() => setShowProfile(true)} 
-            className="absolute top-4 right-4 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transform hover:scale-105 transition-transform duration-200"
-          >
-            Profile
-          </button>
-        </>
-      )}
+    <div className="flex h-screen w-screen bg-gray-100 fixed">
+      <>
+        <Sidebar 
+          expanded={sidebarExpanded} 
+          toggleSidebar={handleSidebarToggle} // Pass toggle function to Sidebar
+          onChatSelect={handleChatSelect} 
+        />
+        <ChatArea 
+          sidebarExpanded={sidebarExpanded} 
+          selectedChatId={selectedChatId} 
+        />
+        {/* If you have a profile page and need to show it, handle its visibility here */}
+        {showProfile && <ProfilePage />}
+      </>
     </div>
   );
 }

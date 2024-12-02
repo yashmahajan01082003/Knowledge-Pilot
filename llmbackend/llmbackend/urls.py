@@ -21,10 +21,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('fileconversion.urls')),
+    path('markdown/', include('fileconversion.urls')),
     path('dataset/', include('dataset_creator.urls')),  
     path('dataset-combiner/', include('dataset_combiner.urls')),  
-    path('chatui/', include('chat_ui.urls')),  # Include chat app URLs
+    path('api/', include('accounts.urls')),  # Include chat app URLs
    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

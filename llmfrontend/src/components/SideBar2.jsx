@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Sidebar({ expanded, onToggle, onChatSelect }) {
+function Sidebar({ expanded, toggleSidebar, onChatSelect }) {
   const [chatHistory, setChatHistory] = useState([]);
   const [showModelSettings, setShowModelSettings] = useState(false);
 
   useEffect(() => {
     const fetchChatHistory = async () => {
       try {
-        const response = await fetch('http://localhost:8000/chatui/chats/', {
+        const response = await axios.get('http://localhost:8000/api/chats/', {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${localStorage.getItem('accessToken') || localStorage.getItem('adminAccessToken')}`
           }
         });
-
-        if (!response.ok) throw new Error('Failed to fetch chat history');
-        
-        const data = await response.json();
-        setChatHistory(data.reverse()); // Reverse to show newest first
+        setChatHistory(response.data.reverse()); // Reverse to show newest first
       } catch (error) {
         console.error('Error fetching chat history:', error);
       }
@@ -27,19 +24,17 @@ function Sidebar({ expanded, onToggle, onChatSelect }) {
 
   const addNewChat = async () => {
     try {
-      const response = await fetch('http://localhost:8000/chatui/chats/create/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({ title: 'New Chat' })
-      });
-
-      if (!response.ok) throw new Error('Failed to create chat');
-      
-      const data = await response.json();
-      setChatHistory(prev => [data.chat, ...prev]); // Add new chat at the top
+      const response = await axios.post(
+        'http://localhost:8000/api/chats/create/',
+        { title: 'New Chat' },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('accessToken') || localStorage.getItem('adminAccessToken')}`
+          }
+        }
+      );
+      setChatHistory(prev => [response.data.chat, ...prev]); // Add new chat at the top
     } catch (error) {
       console.error('Error creating new chat:', error);
     }
@@ -51,18 +46,12 @@ function Sidebar({ expanded, onToggle, onChatSelect }) {
 
   return (
     <div className="relative h-full">
-      <button 
-        onClick={onToggle} 
-        className={`absolute top-4 left-4 z-50 bg-gray-800 text-white p-3 rounded-full hover:bg-gray-700 transition-transform duration-300 ${expanded ? 'translate-x-64' : 'translate-x-0'}`}
-        style={{ width: '40px', height: '40px' }}
+      <div 
+        className={`bg-gray-950 text-white h-full fixed left-0 top-18 border rounded ${expanded ? 'w-64' : 'w-0'} transition-all duration-300 ${expanded ? 'visible' : 'invisible'}`}
       >
-        {expanded ? '<' : '>'}
-      </button>
-
-      <div className={`bg-black text-white h-full fixed left-0 top-0 ${expanded ? 'w-64' : 'w-0'} transition-all duration-300 ${expanded ? 'visible' : 'invisible'}`}>
         <div className="p-4 h-full">
-          <button onClick={addNewChat} className="w-full bg-blue-600 text-white p-2 rounded-lg mb-4 mt-10">New Chat</button>
-          <div className="space-y-2 overflow-y-auto max-h-[calc(100%-200px)] scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-900">
+          <button onClick={addNewChat} className={`w-full bg-gray-600 text-white p-2 rounded-lg mb-4 ${expanded ? 'visible' : 'invisible'}`}>New Chat</button>
+          <div className="space-y-2 overflow-y-auto max-h-[calc(100%-150px)] scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-900">
             {chatHistory.map(chat => (
               <div
                 key={chat.id}
@@ -73,10 +62,10 @@ function Sidebar({ expanded, onToggle, onChatSelect }) {
               </div>
             ))}
           </div>
-          <div className="absolute bottom-4 left-4 right-4">
+          <div className={`absolute bottom-10 left-4 right-4 ${expanded ? 'visible' : 'invisible'}`}>
             <button 
               onClick={() => setShowModelSettings(!showModelSettings)} 
-              className="w-full bg-gray-800 text-white p-3 rounded-md hover:bg-gray-700"
+              className="w-full bg-gray-800 text-white p-2 rounded-md hover:bg-gray-700"
             >
               Model Settings
             </button>
